@@ -9,7 +9,9 @@ function App() {
   return (
     <>
       <div>
-        <h1 class="text-3xl font-bold underline">Hello world!</h1>{" "}
+        <h1 class="flex item-center justify-center text-3xl font-bold underline">
+          Hello world!
+        </h1>{" "}
       </div>
     </>
   );
