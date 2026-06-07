@@ -1,18 +1,28 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link,
+  NavLink,
+} from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import CartPage from "./pages/CartPage";
+import UserPage from "./pages/UserPage";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <div>
-        <h1 class="flex item-center justify-center text-3xl font-bold underline">
-          Hello world!
-        </h1>{" "}
-      </div>
+      <Router>
+        <div className="min-h-screen transistion-colors bg-gray-900 text-white">
+          Shopping App
+        </div>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/user" element={<UserPage />} />
+        </Routes>
+      </Router>
     </>
   );
 }
