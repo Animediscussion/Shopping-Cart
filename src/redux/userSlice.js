@@ -17,5 +17,15 @@ const userSlice = createSlice({
     builder.addCase(fetchUserThunk.pending, (state, action) => {
       state.loading = true;
     });
+    builder.addCase(fetchUserThunk.fulfilled, (state, action) => {
+      state.loading = false;
+      state.user = action.payload;
+    });
+    builder.addCase(fetchUserThunk.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error.message;
+    });
   },
 });
+
+export default userSlice.reducer;
