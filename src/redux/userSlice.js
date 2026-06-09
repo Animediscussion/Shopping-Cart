@@ -14,7 +14,8 @@ const userSlice = createSlice({
   },
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase();
+    builder.addCase(fetchUserThunk.pending, (state, action) => {
+      state.loading = true;
+    });
   },
 });
-[].map().filter().reducer();
