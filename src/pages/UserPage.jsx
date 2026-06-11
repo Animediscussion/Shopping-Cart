@@ -8,7 +8,7 @@ const UserPage = () => {
   const { loading, error, user } = useSelector((state) => state.user);
 
   useEffect(() => {
-    dispatch(fetchUserThunk);
+    dispatch(fetchUserThunk());
   }, []);
   return (
     <div
