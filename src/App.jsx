@@ -11,9 +11,14 @@ import CartPage from "./pages/CartPage";
 import UserPage from "./pages/UserPage";
 
 function App() {
+  const isDarkMode = true;
   return (
     <>
-      <div className="min-h-screen bg-gray-100 text-gray-900">
+      <div
+        className={`p-6 min-h-screen transition-colors ${
+          isDarkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"
+        }`}
+      >
         <Router>
           <div className="p-4 shadow-md flex justify-between items-center bg-white dark:bg-gray-800">
             <NavLink to="/" className="text-xl font-bold dark:text-white">
