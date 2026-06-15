@@ -9,9 +9,11 @@ import {
 import HomePage from "./pages/HomePage";
 import CartPage from "./pages/CartPage";
 import UserPage from "./pages/UserPage";
+import { useSelector } from "react-redux";
 
 function App() {
   const isDarkMode = true;
+  const totalItems = useSelector((store) => store.cart.totalQuantity);
   return (
     <>
       <div
@@ -30,6 +32,13 @@ function App() {
                 className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition"
               >
                 View Cart
+                {totalItems === 0 ? (
+                  <span> </span>
+                ) : (
+                  <span className="px-1 py-1 m-1 rounded-full bg-red-500 border-1  text-white text-xs">
+                    {totalItems}
+                  </span>
+                )}
               </NavLink>
               <NavLink
                 to="/user"

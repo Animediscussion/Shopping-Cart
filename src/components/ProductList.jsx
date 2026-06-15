@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { fetchProductsThunk } from "../redux/productSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../redux/cartSlice";
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -46,7 +47,7 @@ const ProductList = () => {
                   ${product.price.toFixed(2)}
                 </p>
                 <button
-                  //onClick={() => dispatch(addToCart(product))}
+                  onClick={() => dispatch(addToCart(product))}
                   className="mt-2 w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium shadow-sm hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
                 >
                   Add to Cart{" "}
