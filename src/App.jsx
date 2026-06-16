@@ -12,7 +12,7 @@ import UserPage from "./pages/UserPage";
 import { useSelector } from "react-redux";
 
 function App() {
-  const isDarkMode = true;
+  const isDarkMode = useSelector((store) => store.theme.isDarkMode);
   const totalItems = useSelector((store) => store.cart.totalQuantity);
   return (
     <>
