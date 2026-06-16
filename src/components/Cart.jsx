@@ -1,17 +1,17 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { addToCart, removeFromCart, reduceQuantity } from "../redux/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, reduceQuantity, removeFromCart } from "../redux/cartSlice";
 
 const Cart = () => {
-  const dispatch = useDispatch();
-
   const cartItems = useSelector((state) => state.cart?.cartItems);
   const isDarkMode = true;
 
-  const totalPrice = cartItems.reduce(
+  const totalPrice = cartItems?.reduce(
     (total, item) => total + item.price * item.quantity,
     0,
   );
+
+  const dispatch = useDispatch();
 
   return (
     <div
@@ -25,7 +25,7 @@ const Cart = () => {
         <p className="text-gray-600 dark:text-gray-300">Your cart is empty.</p>
       ) : (
         <div className="space-y-4">
-          {cartItems.map((item) => (
+          {cartItems?.map((item) => (
             <div
               key={item.id}
               className={`flex items-center justify-between p-4 rounded-lg shadow-md ${
@@ -70,7 +70,7 @@ const Cart = () => {
                 </button>
 
                 <button
-                  onClick={() => dispatch(removeFromCart(item.id))}
+                  onClick={() => dispatch(removeFromCart({ id: item.id }))}
                   className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded-md"
                 >
                   Remove
