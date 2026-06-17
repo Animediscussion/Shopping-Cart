@@ -4,7 +4,7 @@ import { addToCart, reduceQuantity, removeFromCart } from "../redux/cartSlice";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart?.cartItems);
-  const isDarkMode = true;
+  const isDarkMode = useSelector((store) => store.theme.isDarkMode);
 
   const totalPrice = cartItems?.reduce(
     (total, item) => total + item.price * item.quantity,

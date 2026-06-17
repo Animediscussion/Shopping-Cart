@@ -10,6 +10,7 @@ import HomePage from "./pages/HomePage";
 import CartPage from "./pages/CartPage";
 import UserPage from "./pages/UserPage";
 import { useSelector } from "react-redux";
+import ThemeToggle from "./components/ThemeToggle";
 
 function App() {
   const isDarkMode = useSelector((store) => store.theme.isDarkMode);
@@ -22,8 +23,13 @@ function App() {
         }`}
       >
         <Router>
-          <div className="p-4 shadow-md flex justify-between items-center bg-white dark:bg-gray-800">
-            <NavLink to="/" className="text-xl font-bold dark:text-white">
+          <div
+            className={`${isDarkMode ? "p-4 shadow-md flex justify-between items-center bg-white dark:bg-gray-800" : "p-4 shadow-md flex justify-between items-center bg-gray-900 dark:bg-gray-100"}`}
+          >
+            <NavLink
+              to="/"
+              className={`${isDarkMode ? "text-xl font-bold dark:text-white" : "text-xl font-bold dark:text-gray-900"}`}
+            >
               🛒Shopping App
             </NavLink>
             <div className="flex items-center gap-4">
@@ -46,6 +52,7 @@ function App() {
               >
                 User Info
               </NavLink>
+              <ThemeToggle />
             </div>
           </div>
 

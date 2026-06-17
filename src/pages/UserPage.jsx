@@ -4,7 +4,7 @@ import { fetchUserThunk } from "../redux/userSlice";
 
 const UserPage = () => {
   const dispatch = useDispatch();
-  const isDarkMode = true;
+  const isDarkMode = useSelector((store) => store.theme.isDarkMode);
   const { loading, error, user } = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -30,6 +30,7 @@ const UserPage = () => {
           <p className="text-gray-600 dark: text-gray-300">
             📍{user.address.city}, {user.address.street}
           </p>
+          <p className="text-gray-600 dark: text-gray-300">👤{user.username}</p>
         </div>
       )}
     </div>

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { fetchProductsThunk } from "../redux/productSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/cartSlice";
+import { toggleTheme } from "../redux/themeSlice";
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ const ProductList = () => {
   } = useSelector((store) => store.products);
   const cartItems = useSelector((store) => store.cart.cartItems);
 
-  const isDarkMode = true;
+  const isDarkMode = useSelector((store) => store.theme.isDarkMode);
   useEffect(() => {
     dispatch(fetchProductsThunk());
   }, []);
@@ -25,7 +26,7 @@ const ProductList = () => {
     <>
       <div
         className={`p-6 min-h-screen transition-colors ${
-          isDarkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"
+          isDarkMode ? "bg-gray-900 text-gray-100" : "bg-gray-100 text-gray-900"
         }`}
       >
         <h2 className="text-2xl font-bold mb-4">Products</h2>
@@ -41,7 +42,7 @@ const ProductList = () => {
               <div
                 key={product.id}
                 className={`p-4 rounded-lg shadow-md transition ${
-                  isDarkMode ? " bg-gray-800" : "bg-white"
+                  isDarkMode ? " bg-gray-800" : "bg-gray-100"
                 }`}
               >
                 <img
@@ -50,8 +51,10 @@ const ProductList = () => {
                   className="w-full h-40 object-contain rounded"
                 />
                 <h3 className="text-lg font-semibold mt-2">{product.title}</h3>
-                <p className="text-gray-600 dark:text-gray-300">
-                  ${product.price.toFixed(2)}
+                <p
+                  className={`${isDarkMode ? "text-gray-600 dark:text-gray-300" : "text-gray-900 dark:text-gray-800"}`}
+                >
+                  {product.price.toFixed(2)}
                 </p>
                 {getCartQuantity(product.id) && (
                   <p className="text-sm font-medium text-green-500 mt-1">
